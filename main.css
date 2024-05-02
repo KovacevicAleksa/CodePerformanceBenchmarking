@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+.form-container input[type="number"],
+.form-container input[type="checkbox"] {
+  margin-bottom: 10px;
+}
+.form-container .checkbox-group {
+  display: flex;
+  align-items: center;
+}
+.form-container .checkbox-group label {
+  margin-right: 20px;
+}
+.form-container .checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+.form-container input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}
