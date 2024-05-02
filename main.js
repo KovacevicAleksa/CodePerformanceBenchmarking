@@ -29,18 +29,21 @@ function generateUniqueNumbers(quantity, min, max, NoRepetition, sorted) {
   return Array.from(uniqueNumbers);
 }
 
-let uniqueNumbers = generateUniqueNumbers(1001, 1, 10000, true, true);
-let uniqueNumbers1 = generateUniqueNumbers(1001, 1, 10000, true, true);
-console.log(uniqueNumbers);
+function loops(uniqueNumbers) {
+  console.time("forLoop");
+  for (let i = 0; i < uniqueNumbers; i++) {
+    sumArr[i] = uniqueNumbers[i];
+  }
+  console.timeEnd("forLoop");
 
-console.time("forLoop");
-for (let i = 0; i < uniqueNumbers1; i++) {
-  sumArr[i] = uniqueNumbers[i];
+  console.time("forEach");
+  uniqueNumbers.forEach((item) => {
+    sumArr1.push(item);
+  });
+  console.timeEnd("forEach");
 }
-console.timeEnd("forLoop");
 
-console.time("forEach");
-uniqueNumbers1.forEach((item) => {
-  sumArr1.push(item);
-});
-console.timeEnd("forEach");
+let uniqueNumbers = generateUniqueNumbers(1000, 1, 10000, true, true);
+let uniqueNumbers1 = generateUniqueNumbers(1000, 1, 10000, false, true);
+loops(uniqueNumbers);
+loops(uniqueNumbers1);
