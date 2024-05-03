@@ -1,6 +1,4 @@
 //Making array with random number
-let sumArr = [];
-let sumArr1 = [];
 
 form = document.getElementById("form");
 form.addEventListener("submit", (e) => {
@@ -19,7 +17,8 @@ form.addEventListener("submit", (e) => {
     repetition,
     sorted
   );
-  loops(uniqueNumbers);
+  console.log(uniqueNumbers);
+  loopsCopyArray(uniqueNumbers);
 });
 
 function generateUniqueNumbers(quantity, min, max, repetition, sorted) {
@@ -48,19 +47,43 @@ function generateUniqueNumbers(quantity, min, max, repetition, sorted) {
   return uniqueNumbers;
 }
 
-function loops(uniqueNumbers) {
-  console.time("forLoop");
-  for (let i = 0; i < uniqueNumbers; i++) {
-    sumArr[i] = uniqueNumbers[i];
-  }
-  console.log(uniqueNumbers);
-  console.timeEnd("forLoop");
+function loopsCopyArray(uniqueNumbers) {
+  let ArrForLoop = [];
+  let ArrForLoopCached = [];
+  let ArrForEach = [];
 
-  console.time("forEach");
-  console.log(sumArr1);
-  uniqueNumbers.forEach((item) => {
-    sumArr1.push(item);
-    console.log(sumArr1);
+  let uniqueNumbers0 = [...uniqueNumbers];
+  let uniqueNumbers1 = [...uniqueNumbers];
+  let uniqueNumbers2 = [...uniqueNumbers];
+
+  /*
+   * let uniqueNumbers0 = new Array(100000).fill(Math.random());
+   * let uniqueNumbers1 = new Array(100000).fill(Math.random());
+   * let uniqueNumbers2 = new Array(100000).fill(Math.random());
+   */
+
+  //ForLoop
+  console.time("forLoop");
+  for (let i = 0; i < uniqueNumbers0.length; i++) {
+    ArrForLoop[i] = uniqueNumbers0[i];
+  }
+  console.timeEnd("forLoop");
+  console.log(ArrForLoop);
+
+  //forLoopCached
+  console.time("forLoopCached");
+  const uniqSize = uniqueNumbers1.length;
+  for (let i = 0; i < uniqSize; i++) {
+    ArrForLoopCached[i] = uniqueNumbers1[i];
+  }
+  console.timeEnd("forLoopCached");
+  console.log(ArrForLoopCached);
+
+  //ForEachLoop
+  console.time("ArrForEach");
+  uniqueNumbers2.forEach((item) => {
+    ArrForEach.push(item);
   });
-  console.timeEnd("forEach");
+  console.timeEnd("ArrForEach");
+  console.log(ArrForEach);
 }
