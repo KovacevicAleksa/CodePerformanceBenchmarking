@@ -9,24 +9,24 @@ form.addEventListener("submit", (e) => {
   let numElements = document.getElementById("numElements").value;
   let minNumElements = document.getElementById("minNumElements").value;
   let maxNumElements = document.getElementById("maxNumElements").value;
+  let buffer = document.getElementById("buffer").checked;
 
   let uniqueNumbers = generateUniqueNumbers(
     numElements,
     minNumElements,
     maxNumElements,
     repetition,
-    sorted
+    sorted,
+    buffer
   );
   console.log(uniqueNumbers);
   loopsCopyArray(uniqueNumbers);
 });
 
-function generateUniqueNumbers(quantity, min, max, repetition, sorted) {
-  sumArr1 = [];
-  sumArr = [];
+function generateUniqueNumbers(quantity, min, max, repetition, sorted, buffer) {
   let uniqueNumbers;
   let num;
-  if (repetition == true) {
+  if (repetition) {
     uniqueNumbers = new Set();
     while (uniqueNumbers.size < quantity) {
       num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -39,12 +39,22 @@ function generateUniqueNumbers(quantity, min, max, repetition, sorted) {
       uniqueNumbers[i] = num;
     }
   }
-  if (sorted == true) {
+  if (sorted) {
     uniqueNumbers = Array.from(uniqueNumbers).sort((a, b) => a - b);
   } else {
     uniqueNumbers = Array.from(uniqueNumbers);
   }
-  return uniqueNumbers;
+  if (buffer) {
+    // Max +32767 element
+    let buffer = new ArrayBuffer(
+      uniqueNumbers.length * Int16Array.BYTES_PER_ELEMENT
+    );
+    let intBuffer = new Int16Array(buffer);
+    intBuffer.set(uniqueNumbers);
+    return intBuffer;
+  } else {
+    return uniqueNumbers;
+  }
 }
 
 function loopsCopyArray(uniqueNumbers) {
@@ -64,24 +74,24 @@ function loopsCopyArray(uniqueNumbers) {
 
   //ForLoop
   console.time("forLoop");
-  for (let i = 0; i < uniqueNumbers0.length; i++) {
-    ArrForLoop[i] = uniqueNumbers0[i];
+  for (let i = 0; i < uniqueNumbers.length; i++) {
+    ArrForLoop[i] = uniqueNumbers[i];
   }
   console.timeEnd("forLoop");
   console.log(ArrForLoop);
 
   //forLoopCached
   console.time("forLoopCached");
-  const uniqSize = uniqueNumbers1.length;
+  const uniqSize = uniqueNumbers.length;
   for (let i = 0; i < uniqSize; i++) {
-    ArrForLoopCached[i] = uniqueNumbers1[i];
+    ArrForLoopCached[i] = uniqueNumbers[i];
   }
   console.timeEnd("forLoopCached");
   console.log(ArrForLoopCached);
 
   //ForEachLoop
   console.time("ArrForEach");
-  uniqueNumbers2.forEach((item) => {
+  uniqueNumbers.forEach((item) => {
     ArrForEach.push(item);
   });
   console.timeEnd("ArrForEach");
