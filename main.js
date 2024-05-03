@@ -2,10 +2,32 @@
 let sumArr = [];
 let sumArr1 = [];
 
-function generateUniqueNumbers(quantity, min, max, NoRepetition, sorted) {
+form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let repetition = document.getElementById("repetition").checked;
+  let sorted = document.getElementById("sorted").checked;
+  let numElements = document.getElementById("numElements").value;
+  let minNumElements = document.getElementById("minNumElements").value;
+  let maxNumElements = document.getElementById("maxNumElements").value;
+
+  let uniqueNumbers = generateUniqueNumbers(
+    numElements,
+    minNumElements,
+    maxNumElements,
+    repetition,
+    sorted
+  );
+  loops(uniqueNumbers);
+});
+
+function generateUniqueNumbers(quantity, min, max, repetition, sorted) {
+  sumArr1 = [];
+  sumArr = [];
   let uniqueNumbers;
   let num;
-  if (NoRepetition == true) {
+  if (repetition == true) {
     uniqueNumbers = new Set();
     while (uniqueNumbers.size < quantity) {
       num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -14,19 +36,16 @@ function generateUniqueNumbers(quantity, min, max, NoRepetition, sorted) {
   } else {
     uniqueNumbers = [];
     for (let i = 0; i < quantity; i++) {
-      let num;
       num = Math.floor(Math.random() * (max - min + 1)) + min;
       uniqueNumbers[i] = num;
     }
   }
   if (sorted == true) {
-    if (NoRepetition == false) {
-      uniqueNumbers.sort((a, b) => a - b);
-    } else {
-      uniqueNumbers = Array.from(uniqueNumbers).sort((a, b) => a - b);
-    }
+    uniqueNumbers = Array.from(uniqueNumbers).sort((a, b) => a - b);
+  } else {
+    uniqueNumbers = Array.from(uniqueNumbers);
   }
-  return Array.from(uniqueNumbers);
+  return uniqueNumbers;
 }
 
 function loops(uniqueNumbers) {
@@ -34,16 +53,14 @@ function loops(uniqueNumbers) {
   for (let i = 0; i < uniqueNumbers; i++) {
     sumArr[i] = uniqueNumbers[i];
   }
+  console.log(uniqueNumbers);
   console.timeEnd("forLoop");
 
   console.time("forEach");
+  console.log(sumArr1);
   uniqueNumbers.forEach((item) => {
     sumArr1.push(item);
+    console.log(sumArr1);
   });
   console.timeEnd("forEach");
 }
-
-let uniqueNumbers = generateUniqueNumbers(1000, 1, 10000, true, true);
-let uniqueNumbers1 = generateUniqueNumbers(1000, 1, 10000, false, true);
-loops(uniqueNumbers);
-loops(uniqueNumbers1);
