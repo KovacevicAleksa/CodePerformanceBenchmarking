@@ -19,8 +19,12 @@ form.addEventListener("submit", (e) => {
     sorted,
     buffer
   );
+  console.log(
+    "%cCreated Array:",
+    "color: green; font-size: 16px; font-weight: bold"
+  );
   console.log(uniqueNumbers);
-  loopsCopyArray(uniqueNumbers);
+  compareLoopsCopyMethods(uniqueNumbers);
 });
 
 function generateUniqueNumbers(quantity, min, max, repetition, sorted, buffer) {
@@ -45,11 +49,16 @@ function generateUniqueNumbers(quantity, min, max, repetition, sorted, buffer) {
     uniqueNumbers = Array.from(uniqueNumbers);
   }
   if (buffer) {
-    // Max +32767 element
+    // Max size +32,767 per element Int16
+    // Max size +2,147,483,647 per element Int32
     let buffer = new ArrayBuffer(
-      uniqueNumbers.length * Int16Array.BYTES_PER_ELEMENT
+      max > 32767
+        ? uniqueNumbers.length * Int32Array.BYTES_PER_ELEMENT
+        : uniqueNumbers.length * Int16Array.BYTES_PER_ELEMENT
     );
-    let intBuffer = new Int16Array(buffer);
+    let intBuffer =
+      max > 32767 ? new Int32Array(buffer) : new Int16Array(buffer);
+
     intBuffer.set(uniqueNumbers);
     return intBuffer;
   } else {
@@ -57,11 +66,7 @@ function generateUniqueNumbers(quantity, min, max, repetition, sorted, buffer) {
   }
 }
 
-function loopsCopyArray(uniqueNumbers) {
-  let ArrForLoop = [];
-  let ArrForLoopCached = [];
-  let ArrForEach = [];
-
+function compareLoopsCopyMethods(uniqueNumbers) {
   let uniqueNumbers0 = [...uniqueNumbers];
   let uniqueNumbers1 = [...uniqueNumbers];
   let uniqueNumbers2 = [...uniqueNumbers];
@@ -72,16 +77,23 @@ function loopsCopyArray(uniqueNumbers) {
    * let uniqueNumbers2 = new Array(100000).fill(Math.random());
    */
 
-  //ForLoop
+  console.log(
+    "%cCopy Array:",
+    "color: green; font-size: 16px; font-weight: bold"
+  );
+
+  // ForLoop
   console.time("forLoop");
+  let ArrForLoop = [];
   for (let i = 0; i < uniqueNumbers.length; i++) {
     ArrForLoop[i] = uniqueNumbers[i];
   }
   console.timeEnd("forLoop");
   console.log(ArrForLoop);
 
-  //forLoopCached
+  // ForLoopCached
   console.time("forLoopCached");
+  let ArrForLoopCached = [];
   const uniqSize = uniqueNumbers.length;
   for (let i = 0; i < uniqSize; i++) {
     ArrForLoopCached[i] = uniqueNumbers[i];
@@ -89,8 +101,9 @@ function loopsCopyArray(uniqueNumbers) {
   console.timeEnd("forLoopCached");
   console.log(ArrForLoopCached);
 
-  //ForEachLoop
+  // ForEachLoop
   console.time("ArrForEach");
+  let ArrForEach = [];
   uniqueNumbers.forEach((item) => {
     ArrForEach.push(item);
   });

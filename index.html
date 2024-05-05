@@ -10,27 +10,45 @@
     <div class="form-container" id="form">
       <form>
         <div class="form-group">
-          <label>Number of elements:</label>
-          <input type="number" id="numElements" value="10000" required />
-          <label>Min number of elements:</label>
-          <input type="number" id="minNumElements" value="1" required />
-          <label>Max number of elements:</label>
-          <input type="number" id="maxNumElements" value="100000" required />
+          <label>Number of elements:</label><br />
+          <input type="number" id="numElements" value="10000" required /><br />
+          <label>Maximum number of elements:</label><br />
+          <input type="number" id="minNumElements" value="1" required /><br />
+          <label>Minimum number of elements:</label><br />
+          <input
+            type="number"
+            id="maxNumElements"
+            value="100000"
+            required
+          /><br />
         </div>
+        <hr class="hr-divider" />
+
         <div class="form-group checkbox-group">
-          <label>No repetition:</label>
-          <input type="checkbox" id="repetition" checked />
-        </div>
-        <div class="form-group checkbox-group">
-          <label>Test:</label>
+          <label class="labelMainTitle">Generate options :</label>
           <input type="checkbox" id="sorted" checked />
           <label>Sorted</label>
+        </div>
+        <div class="form-group checkbox-group">
           <input type="checkbox" id="buffer" />
           <label>Buffer</label>
-          <input type="checkbox" id="test3" />
-          <label>Test 3</label>
+          <input type="checkbox" id="repetition" checked />
+          <label>No repetition</label>
         </div>
-        <br /><br />
+        <hr class="hr-divider" />
+
+        <div class="form-group checkbox-group">
+          <label class="labelMainTitle">Algorithm:</label>
+          <input type="radio" id="clone" name="algorithm" checked />
+          <label>Clone Array</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <input type="radio" id="multiply" name="algorithm" />
+          <label>Multiply Array</label>
+        </div>
+        <hr class="hr-divider" />
+
+        <br />
         <input type="submit" />
       </form>
     </div>

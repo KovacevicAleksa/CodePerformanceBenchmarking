@@ -13,35 +13,42 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex; /* Center children vertically */
-  flex-direction: column; /* Arrange children in a column */
 }
 
-/* Your existing styles */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-container label {
-  display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .form-container input[type="number"],
-.form-container input[type="checkbox"] {
+.form-container input[type="checkbox"],
+.form-container input[type="radio"] {
+  margin-bottom: 5px;
+}
+
+.form-group {
   margin-bottom: 10px;
 }
 
-.form-container .checkbox-group {
+.checkbox-group {
   display: flex;
   align-items: center;
 }
 
-.form-container .checkbox-group label {
-  margin-right: 20px;
+.checkbox-group label {
+  margin-right: 10px;
 }
 
-.form-container .checkbox-group input[type="checkbox"] {
+.checkbox-group input[type="checkbox"],
+.checkbox-group input[type="radio"] {
   margin-right: 5px;
 }
 
-.form-container input[type="submit"] {
+input[type="submit"] {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -50,6 +57,16 @@ body {
   cursor: pointer;
 }
 
-.form-container input[type="submit"]:hover {
+input[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+.labelMainTitle {
+  font-weight: bold;
+  color: green;
+}
+
+.hr-divider {
+  margin: 15px 0;
+  border-top: 1px solid #ccc;
 }
