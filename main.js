@@ -70,6 +70,7 @@ function compareLoopsCopyMethods(uniqueNumbers) {
   let uniqueNumbers0 = [...uniqueNumbers];
   let uniqueNumbers1 = [...uniqueNumbers];
   let uniqueNumbers2 = [...uniqueNumbers];
+  let uniqueNumbers3 = [...uniqueNumbers];
 
   /*
    * let uniqueNumbers0 = new Array(100000).fill(Math.random());
@@ -109,4 +110,12 @@ function compareLoopsCopyMethods(uniqueNumbers) {
   });
   console.timeEnd("ArrForEach");
   console.log(ArrForEach);
+
+  console.time("ArrForOf");
+  let ArrForOf = [];
+  for (let number of uniqueNumbers3) {
+    ArrForOf.push(number);
+  }
+  console.timeEnd("ArrForOf");
+  console.log(ArrForOf);
 }
