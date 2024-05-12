@@ -11,14 +11,14 @@
       <form>
         <div class="form-group">
           <label>Number of elements:</label><br />
-          <input type="number" id="numElements" value="10000" required /><br />
+          <input type="number" id="numElements" value="500000" required /><br />
           <label>Maximum number of elements:</label><br />
           <input type="number" id="minNumElements" value="1" required /><br />
           <label>Minimum number of elements:</label><br />
           <input
             type="number"
             id="maxNumElements"
-            value="100000"
+            value="5000000"
             required
           /><br />
         </div>
@@ -30,11 +30,12 @@
           <label>Sorted</label>
         </div>
         <div class="form-group checkbox-group">
-          <input type="checkbox" id="buffer" />
-          <label>Buffer</label>
-          <input type="checkbox" id="repetition" checked />
-          <label>No repetition</label>
+          <input type="checkbox" id="buffer" checked />
+          <label>Use Buffer</label>
+          <input type="checkbox" id="withoutRepetition" checked />
+          <label>Without Repetition</label>
         </div>
+
         <hr class="hr-divider" />
 
         <div class="form-group checkbox-group">
@@ -43,7 +44,7 @@
           <label>Clone Array</label>
         </div>
         <div class="form-group checkbox-group">
-          <input type="radio" id="multiply" name="algorithm" />
+          <input type="radio" id="multiply" name="algorithm" disabled />
           <label>Multiply Array</label>
         </div>
         <hr class="hr-divider" />

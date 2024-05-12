@@ -4,11 +4,11 @@ form = document.getElementById("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let repetition = document.getElementById("repetition").checked;
-  let sorted = document.getElementById("sorted").checked;
   let numElements = document.getElementById("numElements").value;
   let minNumElements = document.getElementById("minNumElements").value;
   let maxNumElements = document.getElementById("maxNumElements").value;
+  let repetition = document.getElementById("withoutRepetition").checked;
+  let sorted = document.getElementById("sorted").checked;
   let buffer = document.getElementById("buffer").checked;
 
   let uniqueNumbers = generateUniqueNumbers(
@@ -71,11 +71,12 @@ function compareLoopsCopyMethods(uniqueNumbers) {
   let uniqueNumbers1 = [...uniqueNumbers];
   let uniqueNumbers2 = [...uniqueNumbers];
   let uniqueNumbers3 = [...uniqueNumbers];
+  let uniqueNumbers4 = [...uniqueNumbers];
+  uniqueNumbers = null; //Garbage Collection
 
   /*
    * let uniqueNumbers0 = new Array(100000).fill(Math.random());
-   * let uniqueNumbers1 = new Array(100000).fill(Math.random());
-   * let uniqueNumbers2 = new Array(100000).fill(Math.random());
+   * let uniqueNumbers1 = new Array(100000).fill(Math.random());..
    */
 
   console.log(
@@ -86,31 +87,35 @@ function compareLoopsCopyMethods(uniqueNumbers) {
   // ForLoop
   console.time("forLoop");
   let ArrForLoop = [];
-  for (let i = 0; i < uniqueNumbers.length; i++) {
-    ArrForLoop[i] = uniqueNumbers[i];
+  for (let i = 0; i < uniqueNumbers0.length; i++) {
+    ArrForLoop[i] = uniqueNumbers0[i];
   }
   console.timeEnd("forLoop");
   console.log(ArrForLoop);
+  ArrForLoop = null; //Garbage Collection
 
   // ForLoopCached
   console.time("forLoopCached");
   let ArrForLoopCached = [];
-  const uniqSize = uniqueNumbers.length;
+  const uniqSize = uniqueNumbers1.length;
   for (let i = 0; i < uniqSize; i++) {
-    ArrForLoopCached[i] = uniqueNumbers[i];
+    ArrForLoopCached[i] = uniqueNumbers1[i];
   }
   console.timeEnd("forLoopCached");
   console.log(ArrForLoopCached);
+  ArrForLoopCached = null; //Garbage Collection
 
   // ForEachLoop
   console.time("ArrForEach");
   let ArrForEach = [];
-  uniqueNumbers.forEach((item) => {
+  uniqueNumbers2.forEach((item) => {
     ArrForEach.push(item);
   });
   console.timeEnd("ArrForEach");
   console.log(ArrForEach);
+  ArrForEach = null; //Garbage Collection
 
+  // ForOfLoop
   console.time("ArrForOf");
   let ArrForOf = [];
   for (let number of uniqueNumbers3) {
@@ -118,4 +123,14 @@ function compareLoopsCopyMethods(uniqueNumbers) {
   }
   console.timeEnd("ArrForOf");
   console.log(ArrForOf);
+  ArrForOf = null; //Garbage Collection
+
+  // Map
+  window.performance.mark("unified-pipeline");
+  console.time("ArrMap");
+  let ArrMap = uniqueNumbers4.map((e) => e);
+  console.timeEnd("ArrMap");
+  console.log(ArrMap);
+  console.log(window.performance.measure("unified-pipeline"));
+  ArrMap = null; //Garbage Collection
 }
