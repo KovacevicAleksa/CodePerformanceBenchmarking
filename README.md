@@ -16,7 +16,7 @@ This project focuses on benchmarking different looping methods for optimal perfo
 
 ## Usage:
 
-1. Access the web [interface](https://kovacevicaleksa.github.io/CodePerformanceBenchmarking/).
+1. Access the web [site](https://kovacevicaleksa.github.io/CodePerformanceBenchmarking/).
 2. Customize the array generation parameters such as size, range, sort, repetition, and buffer values.
 3. Choose the looping methods you want to benchmark.
 4. Initiate the benchmarking process.
