@@ -29,7 +29,7 @@ function generateUniqueNumbers(quantity, min, max, repetition, sorted, buffer) {
 // Function to compare different copy methods for arrays
 function compareLoopsCopyMethods(uniqueNumbers) {
   console.log(
-    "%cCopy Array:",
+    "%cCopy Arrays:",
     "color: green; font-size: 16px; font-weight: bold"
   );
   /*
@@ -82,34 +82,43 @@ function compareLoopsCopyMethods(uniqueNumbers) {
 
   // Map1
   console.time("ArrMap1");
-  let ArrMap1 = uniqueNumbers.map((e) => e);
+  let ArrMap1 = [];
+  ArrMap1 = uniqueNumbers.map((e) => e);
   console.timeEnd("ArrMap1");
   console.log(ArrMap1);
   ArrMap1 = null;
 
   // Map2
-  let startTime0 = performance.now();
   console.time("ArrMap2");
   let ArrMap2 = [];
   uniqueNumbers.map((e) => ArrMap2.push(e));
   console.timeEnd("ArrMap2");
   console.log(ArrMap2);
-  let endTime0 = performance.now();
-  console.log("Vreme izvrsavanja (ms):", endTime0 - startTime0);
-
   ArrMap2 = null;
 
   // Slice
-  let startTime = performance.now();
   console.time("ArrSlice");
   let ArrSlice = [];
   ArrSlice = uniqueNumbers.slice();
   console.timeEnd("ArrSlice");
   console.log(ArrSlice);
-  let endTime = performance.now();
-  console.log("Vreme izvrsavanja (ms):", endTime - startTime);
-
   ArrSlice = null;
+
+  //Spread
+  console.time("ArrSpread");
+  let ArrSpread = [];
+  ArrSpread = [...uniqueNumbers];
+  console.timeEnd("ArrSpread");
+  console.log(ArrSpread);
+  ArrSpread = null;
+
+  //From
+  console.time("ArrFrom");
+  let ArrFrom = [];
+  ArrFrom = Array.from(uniqueNumbers);
+  console.timeEnd("ArrFrom");
+  console.log(ArrFrom);
+  ArrFrom = null;
 }
 
 // Event listener for form submission
