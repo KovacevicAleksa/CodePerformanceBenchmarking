@@ -32,93 +32,182 @@ function compareLoopsCopyMethods(uniqueNumbers) {
     "%cCopy Arrays:",
     "color: green; font-size: 16px; font-weight: bold"
   );
-  /*
 
-   * let uniqueNumbers0 = new Array(100000).fill(Math.random());
-
-   * let uniqueNumbers1 = new Array(100000).fill(Math.random());..
-
-   */
   // ForLoop
-  console.time("forLoop");
+  console.time("forLoop_Copy");
   let ArrForLoop = [];
   for (let i = 0; i < uniqueNumbers.length; i++) {
     ArrForLoop[i] = uniqueNumbers[i];
   }
-  console.timeEnd("forLoop");
+  console.timeEnd("forLoop_Copy");
   console.log(ArrForLoop);
   ArrForLoop = null;
 
   // ForLoopCached
-  console.time("forLoopCached");
+  console.time("forLoopCached_Copy");
   let ArrForLoopCached = [];
   const uniqSize = uniqueNumbers.length;
   for (let i = 0; i < uniqSize; i++) {
     ArrForLoopCached[i] = uniqueNumbers[i];
   }
-  console.timeEnd("forLoopCached");
+  console.timeEnd("forLoopCached_Copy");
   console.log(ArrForLoopCached);
   ArrForLoopCached = null;
 
   // ForEachLoop
-  console.time("ArrForEach");
+  console.time("ArrForEach_Copy");
   let ArrForEach = [];
   uniqueNumbers.forEach((item) => {
     ArrForEach.push(item);
   });
-  console.timeEnd("ArrForEach");
+  console.timeEnd("ArrForEach_Copy");
   console.log(ArrForEach);
   ArrForEach = null;
 
   // ForOfLoop
-  console.time("ArrForOf");
+  console.time("ArrForOf_Copy");
   let ArrForOf = [];
   for (const number of uniqueNumbers) {
     ArrForOf.push(number);
   }
-  console.timeEnd("ArrForOf");
+  console.timeEnd("ArrForOf_Copy");
   console.log(ArrForOf);
   ArrForOf = null;
 
   // Map1
-  console.time("ArrMap1");
+  console.time("ArrMap1_Copy");
   let ArrMap1 = [];
   ArrMap1 = uniqueNumbers.map((e) => e);
-  console.timeEnd("ArrMap1");
+  console.timeEnd("ArrMap1_Copy");
   console.log(ArrMap1);
   ArrMap1 = null;
 
   // Map2
-  console.time("ArrMap2");
+  console.time("ArrMap2_Copy");
   let ArrMap2 = [];
   uniqueNumbers.map((e) => ArrMap2.push(e));
-  console.timeEnd("ArrMap2");
+  console.timeEnd("ArrMap2_Copy");
   console.log(ArrMap2);
   ArrMap2 = null;
 
   // Slice
-  console.time("ArrSlice");
+  console.time("ArrSlice_Copy");
   let ArrSlice = [];
   ArrSlice = uniqueNumbers.slice();
-  console.timeEnd("ArrSlice");
+  console.timeEnd("ArrSlice_Copy");
   console.log(ArrSlice);
   ArrSlice = null;
 
   //Spread
-  console.time("ArrSpread");
+  console.time("ArrSpread_Copy");
   let ArrSpread = [];
   ArrSpread = [...uniqueNumbers];
-  console.timeEnd("ArrSpread");
+  console.timeEnd("ArrSpread_Copy");
   console.log(ArrSpread);
   ArrSpread = null;
 
   //From
-  console.time("ArrFrom");
+  console.time("ArrFrom_Copy");
   let ArrFrom = [];
   ArrFrom = Array.from(uniqueNumbers);
-  console.timeEnd("ArrFrom");
+  console.timeEnd("ArrFrom_Copy");
   console.log(ArrFrom);
   ArrFrom = null;
+}
+function compareLoopsMultiplyMethods(uniqueNumbers) {
+  // x*2
+
+  console.log(
+    "%cMultiply Arrays:",
+    "color: green; font-size: 16px; font-weight: bold"
+  );
+
+  console.log(
+    "%cMultiplying an array by a number is usually faster than copying it.\n" +
+      "This is because multiplication is a simpler operation for CPUs, while copying involves\n" +
+      "looping and assigning values, requiring more steps.\n" +
+      "Several factors contribute to multiplication's potential speed advantage ...\n" +
+      "see more at WhyMultiplyFasterThenCopy.md",
+    "color: blue; font-size: 12px;"
+  );
+
+  // ForLoop
+  console.time("forLoop_Multiply");
+  let ArrForLoop = [];
+  for (let i = 0; i < uniqueNumbers.length; i++) {
+    ArrForLoop[i] = uniqueNumbers[i] * 2;
+  }
+  console.timeEnd("forLoop_Multiply");
+  console.log(ArrForLoop);
+  ArrForLoop = null;
+
+  // ForLoopCached
+  console.time("forLoopCached_Multiply");
+  let ArrForLoopCached = [];
+  const uniqSize = uniqueNumbers.length;
+  for (let i = 0; i < uniqSize; i++) {
+    ArrForLoopCached[i] = uniqueNumbers[i] * 2;
+  }
+  console.timeEnd("forLoopCached_Multiply");
+  console.log(ArrForLoopCached);
+  ArrForLoopCached = null;
+
+  // ForEachLoop
+  console.time("ArrForEach_Multiply");
+  let ArrForEach = [];
+  uniqueNumbers.forEach((item) => {
+    ArrForEach.push(item * 2);
+  });
+  console.timeEnd("ArrForEach_Multiply");
+  console.log(ArrForEach);
+  ArrForEach = null;
+
+  // ForOfLoop
+  console.time("ArrForOf_Multiply");
+  let ArrForOf = [];
+  for (const number of uniqueNumbers) {
+    ArrForOf.push(number * 2);
+  }
+  console.timeEnd("ArrForOf_Multiply");
+  console.log(ArrForOf);
+  ArrForOf = null;
+
+  // Map1
+  console.time("ArrMap1_Multiply");
+  let ArrMap1 = [];
+  ArrMap1 = uniqueNumbers.map((e) => e * 2);
+  console.timeEnd("ArrMap1_Multiply");
+  console.log(ArrMap1);
+  ArrMap1 = null;
+
+  // Map2
+  console.time("ArrMap2_Multiply");
+  let ArrMap2 = [];
+  uniqueNumbers.map((e) => ArrMap2.push(e * 2));
+  console.timeEnd("ArrMap2_Multiply");
+  console.log(ArrMap2);
+  ArrMap2 = null;
+
+  //From
+  console.time("ArrFrom_Multiply");
+  let ArrFrom = [];
+  ArrFrom = Array.from(uniqueNumbers, (x) => x * 2);
+  console.timeEnd("ArrFrom_Multiply");
+  console.log(ArrFrom);
+  ArrFrom = null;
+
+  //Eval
+  console.log(
+    "%cNever use direct eval()!!",
+    "color: orange; font-size: 16px; font-weight: bold",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_direct_eval!"
+  );
+  console.time("ArrEval_Multiply");
+  let ArrEval = [];
+  ArrEval = eval(`[${uniqueNumbers.join("*2,")}*2]`);
+  console.timeEnd("ArrEval_Multiply");
+  console.log(ArrEval);
+  ArrEval = null;
 }
 
 // Event listener for form submission
@@ -150,4 +239,5 @@ form.addEventListener("submit", (e) => {
   );
   console.log(uniqueNumbers);
   compareLoopsCopyMethods(uniqueNumbers);
+  compareLoopsMultiplyMethods(uniqueNumbers);
 });
