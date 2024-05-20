@@ -224,6 +224,8 @@ form.addEventListener("submit", (e) => {
   const repetition = document.getElementById("withoutRepetition").checked;
   const sorted = document.getElementById("sorted").checked;
   const buffer = document.getElementById("buffer").checked;
+  const clone = document.getElementById("clone").checked;
+  const multiply = document.getElementById("multiply").checked;
 
   const uniqueNumbers = generateUniqueNumbers(
     numElements,
@@ -238,6 +240,6 @@ form.addEventListener("submit", (e) => {
     "color: green; font-size: 16px; font-weight: bold"
   );
   console.log(uniqueNumbers);
-  compareLoopsCopyMethods(uniqueNumbers);
-  compareLoopsMultiplyMethods(uniqueNumbers);
+  clone && compareLoopsCopyMethods(uniqueNumbers);
+  multiply && compareLoopsMultiplyMethods(uniqueNumbers);
 });
